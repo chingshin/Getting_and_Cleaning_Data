@@ -58,5 +58,5 @@ fbodyaccjerk(mean|std)[xyz]         mean of the means respectively standard
 fbodygyro(mean|std)[xyz]            mean of the means respectively standard 
                                     deviations of the original fBodyGyro-XYZ measure
 
-For the meaning of the original measures see:
+More information on the original measures and hence units and other you can find at:
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
