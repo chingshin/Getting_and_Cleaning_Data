@@ -2,10 +2,11 @@ library(dplyr)
 library(stringr)
 
 # 1. Create some variables and folders
-## set the base folder where to download and extract the data
+# set the base folder where to download and extract the data
 basefolder <- "."
-## after extracting the data from the zip file, the data files are stored in 
-## the datafolder
+
+# after extracting the data from the zip file, the data files are stored in 
+# the datafolder
 datafolder <- paste(basefolder, "/UCI HAR Dataset", sep="")
 
 # 2. Download the zip file, extract the data and delete the zip file, 
@@ -32,9 +33,11 @@ activities <- read.table(paste0(datafolder, "/activity_labels.txt"),
 
 # 4. Read in the test data using the feature names from step 3 to label the columns
 X_test <- read.table(paste0(datafolder, "/test/X_test.txt"), col.names=features)
+
 # 4.1 select only the columns including the measurments on mean an standard deviation. 
 #     After this step only those columns which labels match "(mean|std)[xyz]$" remain.
 X_test <- select(X_test, matches("(mean|std)[xyz]$"))
+
 # 4.2 Include columns for the oberserved subject and the performed activity
 subject_test <- read.table(paste0(datafolder, "/test/subject_test.txt"), 
                            col.names=c("subject_id"))
@@ -46,9 +49,11 @@ X_test <- cbind(subject=subject_test[[1]], activity=y_test[[2]], X_test)
 # 5. Read in the training data using the feature names from step 3 to label the columns
 X_train <- read.table(paste0(datafolder, "/train/X_train.txt"), 
                       col.names=features)
+
 # 5.1 select only the columns including the measurments on mean an standard deviation. 
 #     After this step only those columns which labels match "(mean|std)[xyz]$" remain.
 X_train <- select(X_train, matches("(mean|std)[xyz]$"))
+
 # 5.2 Include columns for the oberserved subject and the performed activity
 subject_train <- read.table(paste(datafolder, "/train/subject_train.txt", sep=""), 
                             col.names=c("subject_id"))

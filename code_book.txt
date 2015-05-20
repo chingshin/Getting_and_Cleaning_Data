@@ -1,5 +1,62 @@
 Code Book to the "Getting and Cleaning Data" Course Project, May 2015
 
-The resulting data is a transformation from the "Human Activity Recognition Using Smartphones Data Set" (see: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
-The original data was downloaded from the URL https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip on Monday May 18 15:41:04 2015.
+The resulting dataset is a transformation from the "Human Activity Recognition Using 
+Smartphones Data Set" (see: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The original data was downloaded from the URL 
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+on Monday May 18 15:41:04 2015.
 
+The following transformations were performed:
+
+The feature names were read from the features.txt file. All non alphanumeric 
+characters weredeleted and the remaining characters were changed to lower case 
+letters.
+
+The test and the training set were loaded and equiped with the feature names as 
+column names. 
+
+Only those measurements that ended on "mean[xyz]" or "std[xyz]" (where [xyz] is one 
+of the letters "x", "y" or "z") were left in datasets. Particularly the derived
+magnitudes were omitted, because these are no measurements.
+
+Columns for the observed subjects and the performed activities were added to the 
+datasets.
+
+The so tranformed test and training datasets were combined to one large dataset X.
+
+The data set X was grouped by subject and activity and only the subject, activity
+and the mean of each measurement was stored in the final dataset X_tidy.
+
+Meaning of the Variables in the resuling dataset X_tidy:
+
+Grouping variables
+subject             : id of the observed subject (1:30)
+activitiy           : factor:   label               value
+                                LAYING              1
+                                SITTING             2    
+                                STANDING            3
+                                WALKING             4
+                                WALKING_DOWNSTAIRS  5
+                                WALKING_UPSTAIRS    6
+
+Measurements for each group: 
+
+names as regular expression         meaning
+tbodyacc(mean|std)[xyz]             mean of the means respectively standard 
+                                    deviations of the original tBodyAcc-XYZ measure
+tgravityacc(mean|std)[xyz]          mean of the means respectively standard 
+                                    deviations of the original tGravityAcc-XYZ measure
+tbodyaccjerk(mean|std)[xyz]         mean of the means respectively standard 
+                                    deviations of the original tBodyAccJerk-XYZ measure
+tbodygyro(mean|std)[xyz]            mean of the means respectively standard 
+                                    deviations of the original tBodyGyro-XYZ measure
+tbodygyrojerk(mean|std)[xyz]        mean of the means respectively standard 
+                                    deviations of the original tBodyGyroJerk-XYZ measure
+fbodyacc(mean|std)[xyz]             mean of the means respectively standard 
+                                    deviations of the original fBodyAcc-XYZ measure
+fbodyaccjerk(mean|std)[xyz]         mean of the means respectively standard 
+                                    deviations of the original fBodyAccJerk-XYZ measure
+fbodygyro(mean|std)[xyz]            mean of the means respectively standard 
+                                    deviations of the original fBodyGyro-XYZ measure
+
+For the meaning of the original measures see:
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
